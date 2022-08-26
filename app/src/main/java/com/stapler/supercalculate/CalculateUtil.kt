@@ -62,6 +62,11 @@ class CalculateUtil {
                         return false
                     }
                 }
+            } else {
+                val result= state.result
+                if (result.isNotEmpty() && result.contains(",")) {
+                    state.result = result.replace(",","")
+                }
             }
             return true
         }

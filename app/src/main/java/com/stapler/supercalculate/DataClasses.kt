@@ -12,5 +12,5 @@ enum class Status{
 data class CalculateState(
     val status: Status = Status.INPUT,
     val input: String = "",
-    val result: String = ""
+    var result: String = ""
 )
