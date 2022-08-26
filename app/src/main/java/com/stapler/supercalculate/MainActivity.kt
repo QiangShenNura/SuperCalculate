@@ -6,7 +6,9 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
@@ -19,9 +21,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.stapler.supercalculate.CalculateUtil.Companion.elements
-import com.stapler.supercalculate.ui.theme.DarkBlue
-import com.stapler.supercalculate.ui.theme.LightBlue
-import com.stapler.supercalculate.ui.theme.LightGray
 import com.stapler.supercalculate.ui.theme.SuperCalculateTheme
 
 class MainActivity : ComponentActivity() {
@@ -45,7 +44,10 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun SuperCalculator() {
-    Column(Modifier.background(Color.White).padding(20.dp, 0.dp, 20.dp, 0.dp)) {
+    Column(
+        Modifier
+            .background(Color.White)
+            .padding(20.dp, 0.dp, 20.dp, 0.dp)) {
         var state by remember {
             mutableStateOf(CalculateState())
         }
@@ -57,6 +59,7 @@ fun SuperCalculator() {
         ) {
             Text(
                 if (state.status == Status.INPUT) state.input else state.result,
+                Modifier.verticalScroll(rememberScrollState()),
                 fontSize = 80.sp,
                 color = Color.Black
             )
